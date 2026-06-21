@@ -11,222 +11,496 @@
 <style>
   :root{
     --bg:#eefaf5; --card:#ffffff; --teal:#3fb59a; --teal-soft:#cdeee3;
-    --blue:#9ed2e8; --yellow:#ffe9a8; --text:#3f5750; --sub:#8aa39b;
-    --shadow:0 6px 18px rgba(63,181,154,.22);
+    --blue:#9ed2e8; --yellow:#ffe9a8; --red:#ff9a8c; --green:#7fce9e;
+    --text:#3f5750; --sub:#8aa39b; --shadow:0 6px 18px rgba(63,181,154,.22);
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   body{margin:0;font-family:-apple-system,"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif;
     background:var(--bg);color:var(--text);line-height:1.7;
     padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);}
-  header{text-align:center;padding:20px 16px 12px;background:linear-gradient(160deg,var(--teal-soft),#fff);border-bottom:2px dashed var(--teal)}
-  header h1{margin:0;font-size:1.3rem}
-  header p{margin:5px 0 0;font-size:.78rem;color:var(--sub)}
-  .wrap{max-width:560px;margin:0 auto;padding:14px}
+  header{text-align:center;padding:18px 16px 10px;background:linear-gradient(160deg,var(--teal-soft),#fff);border-bottom:2px dashed var(--teal)}
+  header h1{margin:0;font-size:1.22rem}
+  header p{margin:5px 0 0;font-size:.74rem;color:var(--sub)}
+  .wrap{max-width:560px;margin:0 auto;padding:12px}
 
-  /* tabs */
-  .tabs{display:flex;gap:8px;margin-bottom:14px}
-  .tabs button{flex:1;padding:11px;border:none;border-radius:14px;background:#fff;color:var(--sub);font-size:.95rem;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
+  .tabs{display:flex;gap:6px;margin-bottom:12px}
+  .tabs button{flex:1;padding:10px 4px;border:none;border-radius:13px;background:#fff;color:var(--sub);font-size:.82rem;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
   .tabs button.active{background:linear-gradient(90deg,var(--teal),var(--blue));color:#fff}
 
-  /* category chips */
   .chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:8px;margin-bottom:8px;-webkit-overflow-scrolling:touch}
-  .chips button{flex:0 0 auto;padding:7px 14px;border:none;border-radius:20px;background:#fff;color:var(--sub);font-size:.82rem;font-weight:700;box-shadow:var(--shadow);cursor:pointer;white-space:nowrap}
+  .chips button{flex:0 0 auto;padding:6px 13px;border:none;border-radius:20px;background:#fff;color:var(--sub);font-size:.8rem;font-weight:700;box-shadow:var(--shadow);cursor:pointer;white-space:nowrap}
   .chips button.active{background:var(--teal);color:#fff}
 
   /* flashcard */
-  .counter{text-align:center;font-size:.8rem;color:var(--sub);margin-bottom:8px}
-  .flash{background:var(--card);border-radius:24px;box-shadow:var(--shadow);min-height:260px;
+  .counter{text-align:center;font-size:.78rem;color:var(--sub);margin-bottom:8px}
+  .flash{background:var(--card);border-radius:24px;box-shadow:var(--shadow);min-height:250px;
     display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-    padding:26px 22px;cursor:pointer;position:relative;border:3px solid transparent;transition:border-color .2s}
+    padding:24px 20px;cursor:pointer;position:relative;border:3px solid transparent;transition:border-color .2s}
   .flash.known{border-color:var(--teal)}
-  .flash .cat{position:absolute;top:14px;left:16px;font-size:.7rem;color:#fff;background:var(--blue);padding:3px 10px;border-radius:14px}
-  .flash .known-mark{position:absolute;top:12px;right:14px;font-size:1.2rem;color:var(--teal)}
-  .flash .front-term{font-size:1.7rem;font-weight:800}
-  .flash .front-hint{margin-top:14px;font-size:.78rem;color:var(--sub)}
-  .flash .reading{font-size:.85rem;color:var(--teal);font-weight:700;margin-bottom:6px}
-  .flash .def{font-size:.98rem}
-  .flash .eng{font-size:.74rem;color:var(--sub);margin-top:10px}
-
-  .nav{display:flex;gap:10px;margin-top:14px}
-  .nav button{flex:1;padding:13px;border:none;border-radius:14px;background:#fff;color:var(--text);font-size:.95rem;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
+  .flash .cat{position:absolute;top:13px;left:15px;font-size:.68rem;color:#fff;background:var(--blue);padding:3px 10px;border-radius:14px}
+  .flash .known-mark{position:absolute;top:11px;right:13px;font-size:1.2rem;color:var(--teal)}
+  .flash .front-term{font-size:1.55rem;font-weight:800}
+  .flash .front-hint{margin-top:14px;font-size:.76rem;color:var(--sub)}
+  .flash .reading{font-size:.82rem;color:var(--teal);font-weight:700;margin-bottom:6px}
+  .flash .def{font-size:.95rem}
+  .flash .eng{font-size:.72rem;color:var(--sub);margin-top:10px}
+  .nav{display:flex;gap:10px;margin-top:12px}
+  .nav button{flex:1;padding:12px;border:none;border-radius:14px;background:#fff;color:var(--text);font-size:.92rem;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
   .nav button:active{transform:scale(.97)}
-  .knowbtn{margin-top:10px;width:100%;padding:13px;border:none;border-radius:14px;background:var(--teal-soft);color:var(--teal);font-weight:800;font-size:.95rem;cursor:pointer}
+  .knowbtn{margin-top:10px;width:100%;padding:12px;border:none;border-radius:14px;background:var(--teal-soft);color:var(--teal);font-weight:800;font-size:.92rem;cursor:pointer}
   .knowbtn.on{background:var(--teal);color:#fff}
 
-  /* formula list */
-  .frm{background:var(--card);border-radius:18px;padding:15px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
-  .frm .fname{font-weight:800;font-size:1rem}
-  .frm .fdesc{font-size:.78rem;color:var(--sub);margin:2px 0 8px}
-  .frm .feq{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:.92rem;font-weight:700;border-left:5px solid var(--teal)}
-  .frm .fex{font-size:.8rem;margin-top:8px;color:var(--text)}
+  /* formula */
+  .frm{background:var(--card);border-radius:18px;padding:14px 15px;margin-bottom:11px;box-shadow:var(--shadow)}
+  .frm .fname{font-weight:800;font-size:.98rem}
+  .frm .fdesc{font-size:.76rem;color:var(--sub);margin:2px 0 8px}
+  .frm .feq{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:.9rem;font-weight:700;border-left:5px solid var(--teal)}
+  .frm .fex{font-size:.78rem;margin-top:8px}
   .frm .fex b{color:var(--teal)}
+
+  /* chapter */
+  .ch{background:var(--card);border-radius:18px;padding:6px 16px;margin-bottom:11px;box-shadow:var(--shadow)}
+  .ch summary{font-weight:800;font-size:1rem;padding:12px 0;cursor:pointer;list-style:none}
+  .ch summary::-webkit-details-marker{display:none}
+  .ch summary .num{color:var(--teal);font-size:.8rem;margin-right:6px}
+  .ch[open] summary{border-bottom:1px dashed var(--teal-soft)}
+  .ch .body{padding:6px 0 14px;font-size:.9rem}
+  .ch .body h4{margin:14px 0 4px;font-size:.92rem;color:var(--teal)}
+  .ch .body ul{margin:4px 0;padding-left:20px}
+  .ch .body li{margin:3px 0}
+  .ch .body b{color:var(--teal)}
+
+  /* quiz */
+  .qbox{background:var(--card);border-radius:20px;padding:18px 16px;box-shadow:var(--shadow)}
+  .qmeta{font-size:.78rem;color:var(--sub);margin-bottom:10px;display:flex;justify-content:space-between}
+  .qtag{display:inline-block;font-size:.68rem;color:#fff;background:var(--blue);padding:2px 9px;border-radius:12px;margin-bottom:8px}
+  .qtext{font-size:1.02rem;font-weight:700;margin-bottom:14px}
+  .opt{display:block;width:100%;text-align:left;padding:13px 14px;margin-bottom:9px;border:2px solid var(--teal-soft);border-radius:14px;background:#fff;font-size:.92rem;color:var(--text);cursor:pointer}
+  .opt:active{transform:scale(.99)}
+  .opt.correct{background:#e7f8ee;border-color:var(--green);font-weight:700}
+  .opt.wrong{background:#ffeae6;border-color:var(--red)}
+  .opt:disabled{cursor:default;opacity:1}
+  .exp{background:var(--bg);border-radius:14px;padding:12px 14px;font-size:.85rem;margin-top:6px;border-left:5px solid var(--teal);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--teal)}
+  .qnext{margin-top:14px;width:100%;padding:13px;border:none;border-radius:14px;background:linear-gradient(90deg,var(--teal),var(--blue));color:#fff;font-weight:800;font-size:.95rem;cursor:pointer;display:none}
+  .qnext.show{display:block}
+  .result{text-align:center;padding:10px}
+  .result .big{font-size:2.2rem;font-weight:800;color:var(--teal);margin:8px 0}
+
   .view{display:none}.view.show{display:block}
-  footer{text-align:center;font-size:.72rem;color:var(--sub);padding:18px}
+  .disc{font-size:.72rem;color:var(--sub);background:#fff;border-radius:12px;padding:10px 12px;margin-bottom:12px;box-shadow:var(--shadow)}
+  footer{text-align:center;font-size:.7rem;color:var(--sub);padding:16px}
 </style>
 </head>
 <body>
 <header>
   <h1>📊 ウェブ解析士 学習カード</h1>
-  <p>初級｜用語の暗記カード＆重要公式集</p>
+  <p>初級｜解説・用語・公式・問題集</p>
 </header>
 <div class="wrap">
   <div class="tabs">
-    <button id="tabCards" class="active" onclick="switchTab('cards')">📇 用語カード</button>
-    <button id="tabForms" onclick="switchTab('forms')">🧮 公式集</button>
+    <button id="tab_ch" class="active" onclick="switchTab('ch')">📖解説</button>
+    <button id="tab_cards" onclick="switchTab('cards')">📇用語</button>
+    <button id="tab_forms" onclick="switchTab('forms')">🧮公式</button>
+    <button id="tab_quiz" onclick="switchTab('quiz')">✅問題</button>
+  </div>
+
+  <!-- 章解説 -->
+  <div id="view_ch" class="view show">
+    <div class="disc">📌 これは公式テキストと<b>併用</b>する学習サポートです。出題範囲・定義の正本は最新の公式テキストをご確認ください。</div>
+    <div id="chapters"></div>
+    <footer>まず全体像を読んでから用語・問題へ 🌿</footer>
   </div>
 
   <!-- 用語カード -->
-  <div id="viewCards" class="view show">
+  <div id="view_cards" class="view">
     <div class="chips" id="chips"></div>
     <div class="counter" id="counter"></div>
     <div class="flash" id="flash" onclick="flip()"></div>
     <button class="knowbtn" id="knowbtn" onclick="toggleKnown(event)">覚えた！にする</button>
-    <div class="nav">
-      <button onclick="prev()">← 前</button>
-      <button onclick="next()">次 →</button>
-    </div>
-    <footer>カードをタップすると意味が出るよ 🌿</footer>
+    <div class="nav"><button onclick="prev()">← 前</button><button onclick="next()">次 →</button></div>
+    <footer>カードをタップで意味が出るよ 🌿</footer>
   </div>
 
   <!-- 公式集 -->
-  <div id="viewForms" class="view">
+  <div id="view_forms" class="view">
     <div id="forms"></div>
     <footer>計算問題はここを暗記！ ✍️</footer>
+  </div>
+
+  <!-- 問題集 -->
+  <div id="view_quiz" class="view">
+    <div class="chips" id="qchips"></div>
+    <div id="quizArea"></div>
   </div>
 </div>
 
 <script>
+/* ============ 章解説 ============ */
+const CHAPTERS = [
+  {num:"第1章", t:"ウェブ解析士の役割と基本指標", body:`
+    <h4>ウェブ解析とは</h4>
+    <p>アクセスデータや事業データを分析し、<b>事業の成果（売上・利益）に貢献する</b>ための改善を提案する活動。数字を見るだけでなく「次にどうするか」を示すのが役割。</p>
+    <h4>KGIとKPI</h4>
+    <ul>
+      <li><b>KGI</b>＝最終的なゴールを数値化したもの（例：年間売上1億円）</li>
+      <li><b>KPI</b>＝KGIに至るまでの中間目標（例：月間CV数500件）</li>
+      <li><b>KSF</b>＝目標達成のカギとなる重要成功要因</li>
+    </ul>
+    <h4>基本のアクセス指標</h4>
+    <ul>
+      <li><b>PV（ページビュー）</b>：ページが見られた回数</li>
+      <li><b>セッション</b>：訪問のまとまり（≒訪問数）。1人が5ページ見ても1セッション</li>
+      <li><b>ユーザー数</b>：訪れた人数（重複を除く）</li>
+    </ul>`},
+  {num:"第2章", t:"事業分析とマーケティング", body:`
+    <h4>環境分析のフレームワーク</h4>
+    <ul>
+      <li><b>3C</b>：Customer（市場・顧客）／Competitor（競合）／Company（自社）</li>
+      <li><b>SWOT</b>：強み・弱み（内部）／機会・脅威（外部）</li>
+      <li><b>PEST</b>：政治・経済・社会・技術（マクロ環境）</li>
+    </ul>
+    <h4>戦略の組み立て</h4>
+    <ul>
+      <li><b>STP</b>：セグメンテーション（分ける）→ ターゲティング（狙う）→ ポジショニング（位置づけ）の順</li>
+      <li><b>4P</b>（売り手視点）：Product・Price・Place・Promotion</li>
+      <li><b>4C</b>（買い手視点）：顧客価値・コスト・利便性・コミュニケーション</li>
+    </ul>
+    <h4>顧客理解</h4>
+    <ul>
+      <li><b>ペルソナ</b>：典型的な顧客像を1人の人物として具体化</li>
+      <li><b>カスタマージャーニー</b>：認知→興味→比較→購入→利用の体験の流れと接点を可視化</li>
+    </ul>`},
+  {num:"第3章", t:"アクセス解析の基礎とGA4", body:`
+    <h4>GA4の考え方</h4>
+    <p>Googleの解析ツール。あらゆる行動を<b>「イベント」</b>として記録するのが最大の特徴（ページ表示・クリック・スクロール・購入など全部イベント）。</p>
+    <h4>ディメンションと指標</h4>
+    <ul>
+      <li><b>ディメンション</b>＝データの「軸・属性」（例：参照元、ページ、デバイス）</li>
+      <li><b>指標</b>＝「数値」（例：セッション数、CV数、エンゲージメント率）</li>
+    </ul>
+    <h4>GA4のエンゲージメント</h4>
+    <ul>
+      <li><b>エンゲージしたセッション</b>：10秒以上継続／CV発生／2PV以上 のいずれかを満たすセッション</li>
+      <li><b>エンゲージメント率</b>＝エンゲージしたセッション ÷ 全セッション</li>
+      <li><b>直帰率</b>＝1 − エンゲージメント率（GA4の新定義）</li>
+    </ul>`},
+  {num:"第4章", t:"集客の分析", body:`
+    <h4>流入の種類（参照元/メディア）</h4>
+    <ul>
+      <li><b>オーガニック検索</b>：検索結果の自然枠（SEOで増やす）</li>
+      <li><b>有料検索（リスティング）</b>：検索連動型広告。クリック課金が基本</li>
+      <li><b>ダイレクト</b>：URL直接入力・ブックマーク等</li>
+      <li><b>リファラル</b>：他サイトのリンク経由</li>
+      <li><b>ソーシャル</b>：SNS経由</li>
+    </ul>
+    <h4>トリプルメディア</h4>
+    <ul>
+      <li><b>ペイドメディア</b>：広告（買う）</li>
+      <li><b>オウンドメディア</b>：自社サイト・ブログ（持つ）</li>
+      <li><b>アーンドメディア</b>：SNSの口コミ・評判（得る）</li>
+    </ul>`},
+  {num:"第5章", t:"行動の分析（サイト内）", body:`
+    <h4>ページ単位の指標</h4>
+    <ul>
+      <li><b>ランディングページ</b>：訪問者が最初に着地したページ</li>
+      <li><b>直帰率</b>：1ページで離脱したセッションの割合</li>
+      <li><b>離脱率</b>：そのページが訪問の最後になった割合</li>
+      <li><b>回遊率</b>：1セッションあたり何ページ見たか（PV/セッション）</li>
+    </ul>
+    <h4>改善の手法</h4>
+    <ul>
+      <li><b>EFO</b>：入力フォーム最適化。離脱を減らしCVを増やす</li>
+      <li><b>ヒートマップ</b>：ページのどこがよく見られ・クリックされたかを色で可視化</li>
+      <li><b>A/Bテスト</b>：2つの案を出し分け、成果の良い方を採用</li>
+    </ul>`},
+  {num:"第6章", t:"成果の分析", body:`
+    <h4>コンバージョンの種類</h4>
+    <ul>
+      <li><b>マクロCV</b>：最終成果（購入・申込）</li>
+      <li><b>マイクロCV</b>：中間成果（メルマガ登録・資料請求など）</li>
+    </ul>
+    <h4>費用対効果の指標</h4>
+    <ul>
+      <li><b>CPA</b>＝広告費÷CV数（1件獲得の単価。低いほど良い）</li>
+      <li><b>ROAS</b>＝売上÷広告費×100（売上ベースの費用対効果）</li>
+      <li><b>ROI</b>＝利益÷投資額×100（利益ベース）</li>
+      <li><b>LTV</b>：顧客が生涯にもたらす利益。リピートで高まる</li>
+    </ul>
+    <h4>アトリビューション分析</h4>
+    <p>CVに至るまでの<b>複数の接点それぞれの貢献度</b>を評価する考え方。最後のクリックだけで評価しない（間接効果・アシストCVを見る）。</p>`},
+  {num:"第7章", t:"レポーティングとKPI設計", body:`
+    <h4>KPI設計</h4>
+    <ul>
+      <li><b>KPIツリー</b>：KGIを構成要素に分解して管理（例：売上＝訪問数×CVR×客単価）</li>
+    </ul>
+    <h4>PDCAサイクル</h4>
+    <ul>
+      <li><b>Plan</b>（計画）→ <b>Do</b>（実行）→ <b>Check</b>（評価）→ <b>Action</b>（改善）を回し続ける</li>
+    </ul>
+    <h4>良いレポートとは</h4>
+    <ul>
+      <li>数字の羅列ではなく、<b>示唆（だから何が言えるか）と改善提案</b>を添える</li>
+      <li><b>ダッシュボード</b>：重要指標を一覧で継続的にモニタリングする仕組み</li>
+    </ul>`}
+];
+
+/* ============ 用語カード ============ */
 const TERMS = [
-  // ---- 指標・数値 ----
-  {t:"セッション", r:"せっしょん", e:"Session", c:"指標", d:"ユーザーがサイトを訪問してから離れるまでの一連の行動のまとまり。「訪問数」とほぼ同じ意味。"},
-  {t:"PV（ページビュー）", r:"ぺーじびゅー", e:"Page View", c:"指標", d:"ページが表示された回数。同じ人が同じページを3回見れば3PV。"},
-  {t:"ユーザー数", r:"ゆーざーすう", e:"Users", c:"指標", d:"サイトを訪れた人の数（重複を除いた人数）。1人が何回来てもユーザー数は1。"},
-  {t:"CV（コンバージョン）", r:"こんばーじょん", e:"Conversion", c:"指標", d:"サイトの最終的な成果。購入・申込・問い合わせなど「達成してほしい行動」。"},
-  {t:"CVR（コンバージョン率）", r:"こんばーじょんりつ", e:"Conversion Rate", c:"指標", d:"訪問のうち何%が成果に至ったか。CV数 ÷ セッション数 ×100。"},
-  {t:"CTR（クリック率）", r:"くりっくりつ", e:"Click Through Rate", c:"指標", d:"広告やリンクが表示された回数のうち、クリックされた割合。"},
-  {t:"CPC（クリック単価）", r:"くりっくたんか", e:"Cost Per Click", c:"指標", d:"1クリックを得るのにかかった広告費。広告費 ÷ クリック数。"},
-  {t:"CPA（顧客獲得単価）", r:"こきゃくかくとくたんか", e:"Cost Per Acquisition", c:"指標", d:"1件の成果（CV）を得るのにかかった費用。広告費 ÷ CV数。低いほど効率が良い。"},
-  {t:"CPM（インプレッション単価）", r:"いんぷれっしょんたんか", e:"Cost Per Mille", c:"指標", d:"広告を1,000回表示するのにかかる費用。広告費 ÷ 表示回数 ×1000。"},
-  {t:"ROAS", r:"ろあす", e:"Return On Ad Spend", c:"指標", d:"広告費に対して何倍の売上が出たか。売上 ÷ 広告費 ×100（%）。広告の費用対効果。"},
-  {t:"ROI", r:"ろーあい／あーるおーあい", e:"Return On Investment", c:"指標", d:"投資に対する利益の割合。利益 ÷ 投資額 ×100（%）。ROASは売上ベース、ROIは利益ベース。"},
-  {t:"LTV（顧客生涯価値）", r:"らいふたいむばりゅー", e:"Life Time Value", c:"指標", d:"1人の顧客が取引期間を通じてもたらす利益の総額。リピートが多いほど高くなる。"},
-  {t:"客単価", r:"きゃくたんか", e:"Average Order Value", c:"指標", d:"顧客1人あたりの平均購入金額。売上 ÷ 購入者数。"},
+  // 指標
+  {t:"セッション", r:"せっしょん", e:"Session", c:"指標", d:"訪問のまとまり。1人が何ページ見ても1訪問は1セッション。"},
+  {t:"PV（ページビュー）", r:"ぺーじびゅー", e:"Page View", c:"指標", d:"ページが表示された回数。同じ人が3回見れば3PV。"},
+  {t:"ユーザー数", r:"ゆーざーすう", e:"Users", c:"指標", d:"訪れた人数（重複を除く）。"},
+  {t:"新規率／リピーター", r:"しんきりつ", e:"New / Returning", c:"指標", d:"初訪問の人と、再訪した人の割合。"},
+  {t:"直帰率", r:"ちょっきりつ", e:"Bounce Rate", c:"指標", d:"1ページで離脱した割合。GA4では『エンゲージのなかったセッションの割合』。"},
+  {t:"離脱率", r:"りだつりつ", e:"Exit Rate", c:"指標", d:"そのページが訪問の最後になった割合。離脱数÷そのページのPV。"},
+  {t:"回遊率", r:"かいゆうりつ", e:"Pages / Session", c:"指標", d:"1セッションで平均何ページ見たか。PV÷セッション。"},
   {t:"インプレッション", r:"いんぷれっしょん", e:"Impression", c:"指標", d:"広告やコンテンツが表示された回数。"},
-  {t:"直帰率", r:"ちょっきりつ", e:"Bounce Rate", c:"指標", d:"最初の1ページだけ見て離脱したセッションの割合。GA4では「エンゲージのなかったセッションの割合」と定義。"},
-  {t:"離脱率", r:"りだつりつ", e:"Exit Rate", c:"指標", d:"そのページが、訪問の最後のページになった割合。離脱数 ÷ そのページのPV。"},
+  {t:"リーチ", r:"りーち", e:"Reach", c:"指標", d:"広告が届いた『人数』（重複を除く）。インプレッションは回数。"},
+  {t:"フリークエンシー", r:"ふりーくえんしー", e:"Frequency", c:"指標", d:"1人あたり平均何回広告に接触したかの回数。"},
+  {t:"CTR（クリック率）", r:"くりっくりつ", e:"Click Through Rate", c:"指標", d:"表示回数のうちクリックされた割合。クリック÷表示×100。"},
+  {t:"CVR（コンバージョン率）", r:"こんばーじょんりつ", e:"Conversion Rate", c:"指標", d:"訪問のうち成果に至った割合。CV÷セッション×100。"},
 
-  // ---- GA4 ----
-  {t:"GA4", r:"じーえーふぉー", e:"Google Analytics 4", c:"GA4", d:"Googleの最新アクセス解析ツール。すべての行動を「イベント」として計測するのが特徴。"},
-  {t:"イベント", r:"いべんと", e:"Event", c:"GA4", d:"GA4での計測の基本単位。ページ表示・クリック・スクロール・購入などすべてがイベント。"},
-  {t:"エンゲージメント率", r:"えんげーじめんとりつ", e:"Engagement Rate", c:"GA4", d:"全セッションのうち、関心を持って利用された（10秒以上・CV・2PV以上などの）セッションの割合。"},
-  {t:"ディメンションと指標", r:"でぃめんしょんとしひょう", e:"Dimension / Metric", c:"GA4", d:"ディメンション＝データの『軸・属性』（例：参照元、ページ）。指標＝『数値』（例：セッション数、CV数）。"},
-  {t:"参照元／メディア", r:"さんしょうもと／めでぃあ", e:"Source / Medium", c:"GA4", d:"どこから来たか（参照元：google等）と、どんな種類か（メディア：organic, cpc, referral等）の組み合わせ。"},
+  // 戦略・分析
+  {t:"KGI", r:"けーじーあい", e:"Key Goal Indicator", c:"戦略", d:"重要目標達成指標。最終ゴールを数値化（例：年商1億）。"},
+  {t:"KPI", r:"けーぴーあい", e:"Key Performance Indicator", c:"戦略", d:"重要業績評価指標。KGIまでの中間目標を数値化。"},
+  {t:"KSF（重要成功要因）", r:"けーえすえふ", e:"Key Success Factor", c:"戦略", d:"目標達成のカギとなる要因。『何をやれば勝てるか』。"},
+  {t:"KPIツリー", r:"けーぴーあいつりー", e:"KPI Tree", c:"戦略", d:"KGIを構成要素に分解して管理する図（売上＝訪問×CVR×客単価 等）。"},
+  {t:"3C分析", r:"さんしーぶんせき", e:"3C", c:"戦略", d:"Customer（市場・顧客）／Competitor（競合）／Company（自社）。"},
+  {t:"SWOT分析", r:"すうぉっと", e:"SWOT", c:"戦略", d:"強み・弱み（内部）／機会・脅威（外部）で状況整理。"},
+  {t:"PEST分析", r:"ぺすと", e:"PEST", c:"戦略", d:"政治・経済・社会・技術でマクロ環境を分析。"},
+  {t:"4P", r:"よんぴー", e:"4P", c:"戦略", d:"売り手視点：Product・Price・Place・Promotion。"},
+  {t:"4C", r:"よんしー", e:"4C", c:"戦略", d:"買い手視点：顧客価値・コスト・利便性・コミュニケーション。"},
+  {t:"STP", r:"えすてぃーぴー", e:"STP", c:"戦略", d:"セグメンテーション→ターゲティング→ポジショニングの順で戦略を立てる。"},
+  {t:"セグメンテーション", r:"せぐめんてーしょん", e:"Segmentation", c:"戦略", d:"市場を共通の特徴ごとに分けること。"},
+  {t:"ターゲティング", r:"たーげてぃんぐ", e:"Targeting", c:"戦略", d:"分けた中から狙う層を決めること。"},
+  {t:"ポジショニング", r:"ぽじしょにんぐ", e:"Positioning", c:"戦略", d:"競合の中で自社をどう位置づけ差別化するか。"},
+  {t:"ペルソナ", r:"ぺるそな", e:"Persona", c:"戦略", d:"典型的な顧客像を1人の人物として具体化したもの。"},
+  {t:"カスタマージャーニー", r:"かすたまーじゃーにー", e:"Customer Journey", c:"戦略", d:"顧客が認知から購入・利用までにたどる体験と接点の流れ。"},
+  {t:"売上の方程式", r:"うりあげのほうていしき", e:"Sales Equation", c:"戦略", d:"売上＝訪問数×CVR×客単価。どこを伸ばすか分解して考える。"},
+  {t:"ベンチマーク", r:"べんちまーく", e:"Benchmark", c:"戦略", d:"比較・目標の基準にする数値や競合。"},
 
-  // ---- 集客 ----
-  {t:"オーガニック検索", r:"おーがにっくけんさく", e:"Organic Search", c:"集客", d:"検索結果の自然枠（広告でない部分）からの流入。SEOで増やす。"},
-  {t:"リスティング広告", r:"りすてぃんぐこうこく", e:"Listing Ads", c:"集客", d:"検索結果に出る、検索キーワード連動型の広告。クリック課金（CPC）が基本。"},
-  {t:"SEO", r:"えすいーおー", e:"Search Engine Optimization", c:"集客", d:"検索エンジン最適化。自然検索で上位に表示されるようサイトを改善すること。"},
-  {t:"ランディングページ", r:"らんでぃんぐぺーじ", e:"Landing Page (LP)", c:"集客", d:"ユーザーが最初に着地（landing）するページ。広告の遷移先など、CV獲得用の1枚ページも指す。"},
-  {t:"ファネル", r:"ふぁねる", e:"Funnel", c:"集客", d:"認知→興味→比較→購入のように、段階を経るごとに人数が絞られていく『漏斗（じょうご）』の考え方。"},
+  // 集客
+  {t:"オーガニック検索", r:"おーがにっく", e:"Organic Search", c:"集客", d:"検索結果の自然枠（広告でない部分）からの流入。"},
+  {t:"SEO", r:"えすいーおー", e:"Search Engine Optimization", c:"集客", d:"検索エンジン最適化。自然検索で上位表示を目指す改善。"},
+  {t:"リスティング広告", r:"りすてぃんぐ", e:"Listing Ads", c:"集客", d:"検索連動型広告。クリック課金（CPC）が基本。"},
+  {t:"参照元／メディア", r:"さんしょうもと", e:"Source / Medium", c:"集客", d:"どこから(google等)＋どんな種類か(organic/cpc/referral)の組み合わせ。"},
+  {t:"トリプルメディア", r:"とりぷるめでぃあ", e:"Triple Media", c:"集客", d:"ペイド（広告）・オウンド（自社）・アーンド（口コミ）の3区分。"},
+  {t:"オウンドメディア", r:"おうんどめでぃあ", e:"Owned Media", c:"集客", d:"自社で保有・運営するサイトやブログ等。"},
+  {t:"ペイドメディア", r:"ぺいどめでぃあ", e:"Paid Media", c:"集客", d:"費用を払って掲載する広告枠。"},
+  {t:"アーンドメディア", r:"あーんどめでぃあ", e:"Earned Media", c:"集客", d:"SNSの口コミや評判など、信頼を『得る』メディア。"},
+  {t:"メールマーケティング", r:"めーるまーけてぃんぐ", e:"Email Marketing", c:"集客", d:"メルマガ等でリピートや再訪を促す施策。開封率・クリック率が指標。"},
+  {t:"アフィリエイト", r:"あふぃりえいと", e:"Affiliate", c:"集客", d:"成果が出たら報酬を払う成果報酬型の広告。"},
 
-  // ---- 分析・戦略 ----
-  {t:"KGI", r:"けーじーあい", e:"Key Goal Indicator", c:"分析", d:"重要目標達成指標。最終ゴールを数値化したもの（例：年間売上1億円）。"},
-  {t:"KPI", r:"けーぴーあい", e:"Key Performance Indicator", c:"分析", d:"重要業績評価指標。KGI達成までの中間目標を数値化したもの（例：月間CV数500）。"},
-  {t:"KSF（重要成功要因）", r:"けーえすえふ", e:"Key Success Factor", c:"分析", d:"目標を達成するために特に重要となる要因。「何をやれば勝てるか」のカギ。"},
-  {t:"3C分析", r:"さんしーぶんせき", e:"3C Analysis", c:"分析", d:"Customer（市場・顧客）・Competitor（競合）・Company（自社）の3視点で市場環境を分析する手法。"},
-  {t:"SWOT分析", r:"すうぉっとぶんせき", e:"SWOT Analysis", c:"分析", d:"Strength（強み）・Weakness（弱み）・Opportunity（機会）・Threat（脅威）で自社の状況を整理。"},
-  {t:"4P", r:"よんぴー", e:"4P", c:"分析", d:"売り手目線のマーケ要素：Product（製品）・Price（価格）・Place（流通）・Promotion（販促）。"},
-  {t:"4C", r:"よんしー", e:"4C", c:"分析", d:"買い手目線のマーケ要素：Customer Value（顧客価値）・Cost・Convenience（利便性）・Communication。"},
-  {t:"PEST分析", r:"ぺすとぶんせき", e:"PEST Analysis", c:"分析", d:"Politics（政治）・Economy（経済）・Society（社会）・Technology（技術）で外部環境（マクロ）を分析。"},
-  {t:"ペルソナ", r:"ぺるそな", e:"Persona", c:"分析", d:"年齢・職業・悩みなどを具体的に設定した、典型的な顧客像（架空の1人）。"},
-  {t:"カスタマージャーニー", r:"かすたまーじゃーにー", e:"Customer Journey", c:"分析", d:"顧客が認知から購入・利用までにたどる体験の流れ。各段階の心理や接点を可視化する。"},
-  {t:"売上の方程式", r:"うりあげのほうていしき", e:"Sales Equation", c:"分析", d:"売上 ＝ 訪問数 × CVR × 客単価。どの要素を伸ばせば売上が上がるかを分解して考える基本式。"}
+  // 広告
+  {t:"運用型広告", r:"うんようがたこうこく", e:"Performance Ads", c:"広告", d:"入札や配信を調整しながら効果を最適化していく広告。"},
+  {t:"ディスプレイ広告", r:"でぃすぷれいこうこく", e:"Display Ads", c:"広告", d:"サイトやアプリの広告枠に出すバナー等の画像広告。認知向き。"},
+  {t:"動画広告", r:"どうがこうこく", e:"Video Ads", c:"広告", d:"YouTube等で流れる動画形式の広告。"},
+  {t:"ネイティブ広告", r:"ねいてぃぶこうこく", e:"Native Ads", c:"広告", d:"コンテンツに自然に溶け込む形式の広告（インフィード等）。"},
+  {t:"リターゲティング", r:"りたーげてぃんぐ", e:"Retargeting", c:"広告", d:"一度訪れた人を追いかけて再表示する広告（リマーケティング）。"},
+  {t:"ビュースルーCV", r:"びゅーするーこんばーじょん", e:"View-through CV", c:"広告", d:"広告を見た（クリックせず）後にCVした、間接的な成果。"},
+
+  // 行動
+  {t:"ランディングページ", r:"らんでぃんぐぺーじ", e:"Landing Page", c:"行動", d:"訪問者が最初に着地するページ。広告遷移先の1枚ページも指す。"},
+  {t:"EFO", r:"いーえふおー", e:"Entry Form Optimization", c:"行動", d:"入力フォーム最適化。入力の手間や離脱を減らしCVを上げる。"},
+  {t:"ヒートマップ", r:"ひーとまっぷ", e:"Heatmap", c:"行動", d:"ページのどこが見られ・クリックされたかを色の濃淡で可視化。"},
+  {t:"A/Bテスト", r:"えーびーてすと", e:"A/B Test", c:"行動", d:"2つの案を出し分け、成果の良い方を採用する検証。"},
+  {t:"ファネル", r:"ふぁねる", e:"Funnel", c:"行動", d:"段階を経るごとに人数が絞られる『漏斗』。どこで離脱するか把握。"},
+
+  // 成果
+  {t:"CV（コンバージョン）", r:"こんばーじょん", e:"Conversion", c:"成果", d:"サイトの成果。購入・申込・問い合わせなど。"},
+  {t:"マクロCV", r:"まくろこんばーじょん", e:"Macro CV", c:"成果", d:"最終的な成果（購入・申込）。"},
+  {t:"マイクロCV", r:"まいくろこんばーじょん", e:"Micro CV", c:"成果", d:"中間的な成果（メルマガ登録・資料請求など）。"},
+  {t:"CPA（顧客獲得単価）", r:"こきゃくかくとくたんか", e:"Cost Per Acquisition", c:"成果", d:"1件のCVを得る費用。広告費÷CV数。低いほど良い。"},
+  {t:"CPC（クリック単価）", r:"くりっくたんか", e:"Cost Per Click", c:"成果", d:"1クリックの費用。広告費÷クリック数。"},
+  {t:"CPM（インプレッション単価）", r:"いんぷれっしょんたんか", e:"Cost Per Mille", c:"成果", d:"1,000回表示の費用。広告費÷表示×1000。"},
+  {t:"ROAS", r:"ろあす", e:"Return On Ad Spend", c:"成果", d:"広告費に対する売上の割合。売上÷広告費×100。"},
+  {t:"ROI", r:"あーるおーあい", e:"Return On Investment", c:"成果", d:"投資に対する利益の割合。利益÷投資額×100。"},
+  {t:"LTV（顧客生涯価値）", r:"らいふたいむばりゅー", e:"Life Time Value", c:"成果", d:"1顧客が生涯にもたらす利益の総額。リピートで高まる。"},
+  {t:"客単価", r:"きゃくたんか", e:"Average Order Value", c:"成果", d:"顧客1人あたりの平均購入額。売上÷購入者数。"},
+  {t:"アトリビューション", r:"あとりびゅーしょん", e:"Attribution", c:"成果", d:"CVに至る各接点の貢献度を評価する考え方。"},
+  {t:"アシストコンバージョン", r:"あしすとこんばーじょん", e:"Assisted CV", c:"成果", d:"最後のクリックではないが、CVを後押しした接点の貢献。"},
+  {t:"間接効果", r:"かんせつこうか", e:"Indirect Effect", c:"成果", d:"直接CVしなくても、認知・検討を助けた施策の効果。"},
+  {t:"RFM分析", r:"あーるえふえむぶんせき", e:"RFM", c:"成果", d:"Recency（最近購入）・Frequency（頻度）・Monetary（金額）で顧客を分類。"},
+  {t:"チャーンレート", r:"ちゃーんれーと", e:"Churn Rate", c:"成果", d:"解約率。一定期間に離れた顧客の割合。低いほど良い。"},
+  {t:"リテンション", r:"りてんしょん", e:"Retention", c:"成果", d:"顧客の維持・定着。リピートしてもらうこと。"},
+
+  // GA4・計測・データ
+  {t:"GA4", r:"じーえーふぉー", e:"Google Analytics 4", c:"GA4", d:"Googleの最新解析ツール。全行動を『イベント』で計測。"},
+  {t:"イベント", r:"いべんと", e:"Event", c:"GA4", d:"GA4の計測の基本単位。表示・クリック・購入などすべて。"},
+  {t:"ディメンションと指標", r:"でぃめんしょんとしひょう", e:"Dimension / Metric", c:"GA4", d:"ディメンション＝軸・属性、指標＝数値。"},
+  {t:"エンゲージメント率", r:"えんげーじめんとりつ", e:"Engagement Rate", c:"GA4", d:"関心を持って利用されたセッションの割合（10秒/CV/2PV）。"},
+  {t:"キーイベント", r:"きーいべんと", e:"Key Event", c:"GA4", d:"GA4で成果（CV）として扱う重要なイベント。"},
+  {t:"Cookie", r:"くっきー", e:"Cookie", c:"GA4", d:"ブラウザに保存される識別情報。訪問者の判別等に使う。"},
+  {t:"ファーストパーティデータ", r:"ふぁーすとぱーてぃでーた", e:"1st Party Data", c:"GA4", d:"自社が直接集めた顧客データ。信頼性が高く今後の主役。"},
+  {t:"サードパーティCookie", r:"さーどぱーてぃくっきー", e:"3rd Party Cookie", c:"GA4", d:"他社が発行するCookie。プライバシー規制で利用が縮小傾向。"},
+  {t:"MA（マーケティングオートメーション）", r:"えむえー", e:"Marketing Automation", c:"GA4", d:"見込み客への施策（メール配信等）を自動化する仕組み。"},
+  {t:"CRM", r:"しーあーるえむ", e:"Customer Relationship Mgmt", c:"GA4", d:"顧客情報を管理し関係を深める仕組み・考え方。"},
+  {t:"NPS", r:"えぬぴーえす", e:"Net Promoter Score", c:"GA4", d:"『人に薦めたいか』で顧客ロイヤルティを測る指標。"},
+  {t:"PDCA", r:"ぴーでぃーしーえー", e:"PDCA", c:"GA4", d:"計画→実行→評価→改善 を繰り返す改善サイクル。"}
 ];
 
 const FORMULAS = [
-  {n:"CVR（コンバージョン率）", d:"訪問のうち成果に至った割合", eq:"CVR ＝ CV数 ÷ セッション数 × 100（%）", ex:"例：1,000セッションで20CV → 20÷1000×100＝<b>2%</b>"},
-  {n:"CTR（クリック率）", d:"表示に対してクリックされた割合", eq:"CTR ＝ クリック数 ÷ 表示回数 × 100（%）", ex:"例：10,000表示で300クリック → 300÷10000×100＝<b>3%</b>"},
-  {n:"CPC（クリック単価）", d:"1クリックあたりの費用", eq:"CPC ＝ 広告費 ÷ クリック数", ex:"例：広告費30,000円で600クリック → 30000÷600＝<b>50円</b>"},
-  {n:"CPA（顧客獲得単価）", d:"1件のCVを得る費用（低いほど良い）", eq:"CPA ＝ 広告費 ÷ CV数", ex:"例：広告費50,000円で25CV → 50000÷25＝<b>2,000円</b>"},
-  {n:"CPM（インプレッション単価）", d:"1,000回表示あたりの費用", eq:"CPM ＝ 広告費 ÷ 表示回数 × 1,000", ex:"例：広告費20,000円で500,000表示 → 20000÷500000×1000＝<b>40円</b>"},
-  {n:"ROAS（広告費用対効果）", d:"広告費に対する売上の割合", eq:"ROAS ＝ 売上 ÷ 広告費 × 100（%）", ex:"例：広告費100,000円で売上400,000円 → 400000÷100000×100＝<b>400%</b>"},
-  {n:"ROI（投資対効果）", d:"投資に対する利益の割合", eq:"ROI ＝ 利益 ÷ 投資額 × 100（%）　※利益＝売上−コスト", ex:"例：投資100,000円・利益50,000円 → 50000÷100000×100＝<b>50%</b>"},
-  {n:"売上の方程式", d:"売上を3要素に分解する基本式", eq:"売上 ＝ 訪問数 × CVR × 客単価", ex:"例：10,000訪問 × 2% × 5,000円 → 10000×0.02×5000＝<b>100万円</b>"},
-  {n:"客単価", d:"顧客1人あたりの平均購入額", eq:"客単価 ＝ 売上 ÷ 購入者数", ex:"例：売上600,000円・購入者200人 → 600000÷200＝<b>3,000円</b>"},
-  {n:"LTV（顧客生涯価値・簡易版）", d:"1顧客が生涯にもたらす利益", eq:"LTV ＝ 客単価 × 粗利率 × 購入回数（継続期間）", ex:"例：客単価5,000円 × 粗利40% × 6回 → 5000×0.4×6＝<b>12,000円</b>"},
-  {n:"直帰率", d:"1ページで離脱したセッションの割合", eq:"直帰率 ＝ 直帰したセッション数 ÷ セッション数 × 100（%）", ex:"例：1,000セッションで600直帰 → 600÷1000×100＝<b>60%</b>"}
+  {n:"CVR（コンバージョン率）", d:"訪問のうち成果に至った割合", eq:"CVR ＝ CV数 ÷ セッション数 × 100（%）", ex:"例：1,000セッションで20CV → <b>2%</b>"},
+  {n:"CTR（クリック率）", d:"表示に対しクリックされた割合", eq:"CTR ＝ クリック数 ÷ 表示回数 × 100（%）", ex:"例：10,000表示で300クリック → <b>3%</b>"},
+  {n:"CPC（クリック単価）", d:"1クリックあたりの費用", eq:"CPC ＝ 広告費 ÷ クリック数", ex:"例：30,000円で600クリック → <b>50円</b>"},
+  {n:"CPA（顧客獲得単価）", d:"1件のCVを得る費用（低いほど良い）", eq:"CPA ＝ 広告費 ÷ CV数", ex:"例：50,000円で25CV → <b>2,000円</b>"},
+  {n:"CPM（インプレッション単価）", d:"1,000回表示あたりの費用", eq:"CPM ＝ 広告費 ÷ 表示回数 × 1,000", ex:"例：20,000円で500,000表示 → <b>40円</b>"},
+  {n:"ROAS（広告費用対効果）", d:"広告費に対する売上の割合", eq:"ROAS ＝ 売上 ÷ 広告費 × 100（%）", ex:"例：広告10万で売上40万 → <b>400%</b>"},
+  {n:"ROI（投資対効果）", d:"投資に対する利益の割合", eq:"ROI ＝ 利益 ÷ 投資額 × 100（%）　※利益＝売上−コスト", ex:"例：投資10万・利益5万 → <b>50%</b>"},
+  {n:"売上の方程式", d:"売上を3要素に分解", eq:"売上 ＝ 訪問数 × CVR × 客単価", ex:"例：10,000訪問×2%×5,000円 → <b>100万円</b>"},
+  {n:"客単価", d:"顧客1人あたりの平均購入額", eq:"客単価 ＝ 売上 ÷ 購入者数", ex:"例：売上60万・200人 → <b>3,000円</b>"},
+  {n:"LTV（簡易版）", d:"1顧客が生涯にもたらす利益", eq:"LTV ＝ 客単価 × 粗利率 × 購入回数", ex:"例：5,000円×40%×6回 → <b>12,000円</b>"},
+  {n:"直帰率", d:"1ページで離脱した割合", eq:"直帰率 ＝ 直帰セッション ÷ 全セッション × 100（%）", ex:"例：1,000中600直帰 → <b>60%</b>"},
+  {n:"回遊率（ページ/セッション）", d:"1訪問で平均何ページ見たか", eq:"回遊率 ＝ PV ÷ セッション数", ex:"例：30,000PV÷10,000 → <b>3ページ</b>"}
 ];
 
-const CATS = ["全部","指標","GA4","集客","分析"];
-const KEY = "wa_known";
-let curCat = "全部", idx = 0, flipped = false;
+/* ============ 問題集 ============ */
+const QUIZ = [
+  {ch:"1.基本指標", q:"KGIとKPIの関係として正しいものは？", o:["KGIが最終目標、KPIはその中間目標","KPIが最終目標、KGIは中間目標","どちらも同じ意味","KGIは費用、KPIは売上のこと"], a:0, ex:"KGI＝最終ゴール、KPI＝そこに至る中間目標です。"},
+  {ch:"1.基本指標", q:"1人のユーザーが1回の訪問で5ページ見ました。セッション数はいくつ？", o:["1","5","2","0"], a:0, ex:"訪問のまとまり＝1セッション。PVは5ですがセッションは1です。"},
+  {ch:"1.基本指標", q:"売上900,000円・購入者300人。客単価は？", o:["3,000円","300円","9,000円","30,000円"], a:0, ex:"客単価＝売上÷購入者数＝900,000÷300＝3,000円。"},
+  {ch:"1.基本指標", q:"PVについて正しいのは？", o:["同じ人が同じページを複数回見ても回数分カウントされる","1人につき1回しかカウントされない","訪問者の人数のこと","成果の件数のこと"], a:0, ex:"PVは表示された回数。重複もそのままカウントします。"},
+  {ch:"2.戦略", q:"3C分析に含まれないものは？", o:["価格（Price）","顧客（Customer）","競合（Competitor）","自社（Company）"], a:0, ex:"3CはCustomer・Competitor・Company。価格は含まれません（4Pの要素）。"},
+  {ch:"2.戦略", q:"SWOT分析の「O」が表すものは？", o:["機会（Opportunity）","強み（Strength）","弱み（Weakness）","脅威（Threat）"], a:0, ex:"Oは外部環境のプラス要因＝機会（Opportunity）。"},
+  {ch:"2.戦略", q:"STP分析の正しい順序は？", o:["セグメンテーション→ターゲティング→ポジショニング","ターゲティング→セグメンテーション→ポジショニング","ポジショニング→ターゲティング→セグメンテーション","セグメンテーション→ポジショニング→ターゲティング"], a:0, ex:"分ける→狙う→位置づける、の順です。"},
+  {ch:"2.戦略", q:"4Pは誰の視点のフレームワークか？", o:["売り手（企業）視点","買い手（顧客）視点","競合視点","投資家視点"], a:0, ex:"4Pは売り手視点。買い手視点は4Cです。"},
+  {ch:"2.戦略", q:"ペルソナの説明として正しいのは？", o:["年齢や悩みまで具体化した典型的な顧客像","自社の理想の経営者像","競合企業の分析結果","売上目標の数値"], a:0, ex:"ペルソナは典型的な顧客を1人の人物像として具体化したものです。"},
+  {ch:"3.GA4", q:"GA4で計測の基本単位となるのは？", o:["イベント","セッション","ページビュー","ヒット"], a:0, ex:"GA4はあらゆる行動を『イベント』として計測します。"},
+  {ch:"3.GA4", q:"ディメンションと指標の説明で正しいのは？", o:["ディメンション＝軸・属性、指標＝数値","ディメンション＝数値、指標＝属性","どちらも数値のこと","どちらも属性のこと"], a:0, ex:"ディメンションは軸（参照元など）、指標は数値（セッション数など）。"},
+  {ch:"3.GA4", q:"GA4の直帰率の定義に最も近いのは？", o:["エンゲージのなかったセッションの割合","1ページだけ見て離脱した割合（旧定義のみ）","CVしなかった人の割合","新規ユーザーの割合"], a:0, ex:"GA4では直帰率＝1−エンゲージメント率。エンゲージのなかったセッションの割合です。"},
+  {ch:"3.GA4", q:"参照元/メディアの『organic』が表すのは？", o:["自然検索からの流入","広告からの流入","SNSからの流入","直接アクセス"], a:0, ex:"organic＝自然検索。cpcは広告、referralは他サイト経由です。"},
+  {ch:"4.集客", q:"リスティング広告で主流の課金方式は？", o:["クリック課金（CPC）","表示課金のみ","期間契約のみ","成果報酬のみ"], a:0, ex:"リスティングはクリックされたら課金されるCPCが基本です。"},
+  {ch:"4.集客", q:"SEOの説明として正しいのは？", o:["自然検索で上位表示を目指す改善活動","お金を払って検索広告枠に出すこと","SNSで拡散させること","メールを大量送信すること"], a:0, ex:"SEOは検索エンジン最適化。自然検索枠での上位表示を目指します。"},
+  {ch:"4.集客", q:"トリプルメディアの組み合わせとして正しいのは？", o:["ペイド・オウンド・アーンド","ペイド・オウンド・検索","オウンド・SNS・メール","広告・SEO・LP"], a:0, ex:"買う(ペイド)・持つ(オウンド)・得る(アーンド)の3区分です。"},
+  {ch:"4.集客", q:"広告費40,000円で800クリック。CPCは？", o:["50円","500円","20円","200円"], a:0, ex:"CPC＝広告費÷クリック数＝40,000÷800＝50円。"},
+  {ch:"5.行動", q:"EFOとは何の最適化か？", o:["入力フォーム","検索エンジン","画像サイズ","広告文"], a:0, ex:"EFO＝Entry Form Optimization。入力フォームの最適化です。"},
+  {ch:"5.行動", q:"離脱率の説明として正しいのは？", o:["そのページが訪問の最後になった割合","最初の1ページで帰った割合","クリックされた割合","CVした割合"], a:0, ex:"離脱率はそのページが最後になった割合。直帰率（1ページ目で離脱）とは別物です。"},
+  {ch:"5.行動", q:"A/Bテストとは？", o:["2つの案を出し分け成果の良い方を選ぶ検証","広告費を2倍にすること","2回テストを繰り返すこと","AとBの社員を比べること"], a:0, ex:"2案を比較し、データで良い方を採用する手法です。"},
+  {ch:"5.行動", q:"ヒートマップで分かることは？", o:["ページ内のどこが見られ・クリックされたか","流入元の内訳","売上金額","競合の戦略"], a:0, ex:"ページ内の注目箇所やクリック位置を色で可視化します。"},
+  {ch:"6.成果", q:"2,000セッションで40CV。CVRは？", o:["2%","0.2%","20%","4%"], a:0, ex:"CVR＝40÷2,000×100＝2%。"},
+  {ch:"6.成果", q:"CPAについて正しいのは？", o:["低いほど効率が良い","高いほど効率が良い","売上と同じ意味","クリック数のこと"], a:0, ex:"CPAは1件獲得の費用なので、低いほど効率的です。"},
+  {ch:"6.成果", q:"広告費50,000円で売上250,000円。ROASは？", o:["500%","50%","200%","20%"], a:0, ex:"ROAS＝売上÷広告費×100＝250,000÷50,000×100＝500%。"},
+  {ch:"6.成果", q:"ROIとROASの違いとして正しいのは？", o:["ROIは利益ベース、ROASは売上ベース","ROIは売上ベース、ROASは利益ベース","両方とも同じ","ROASはクリック数のこと"], a:0, ex:"ROASは売上で見る、ROIは利益で見る、が違いです。"},
+  {ch:"6.成果", q:"アトリビューション分析とは？", o:["CVに至る各接点の貢献度を評価する","最後のクリックだけで広告を評価する","直帰率を下げる手法","フォームを最適化する手法"], a:0, ex:"複数接点それぞれの貢献を評価し、間接効果も見ます。"},
+  {ch:"6.成果", q:"マイクロCVの例として適切なのは？", o:["メルマガ登録や資料請求","商品の購入完了","解約","退会"], a:0, ex:"マイクロCVは中間成果。最終成果（購入）はマクロCVです。"},
+  {ch:"6.成果", q:"LTVが高い顧客の特徴は？", o:["長く繰り返し購入してくれる","一度だけ来てすぐ離れる","広告だけ見る","クリックだけする"], a:0, ex:"LTVはリピートや継続で高くなります。"},
+  {ch:"7.レポート", q:"KPIツリーを作る目的は？", o:["KGIを達成要因に分解して管理するため","広告費を増やすため","ページを増やすため","Cookieを集めるため"], a:0, ex:"最終目標(KGI)を要素に分解し、どこを改善するか管理します。"},
+  {ch:"7.レポート", q:"PDCAの「C」が表すのは？", o:["Check（評価）","Create（作成）","Customer（顧客）","Cost（費用）"], a:0, ex:"Plan→Do→Check（評価）→Action の評価フェーズです。"},
+  {ch:"7.レポート", q:"良いレポートの条件として適切なのは？", o:["数字に加え示唆と改善提案を添える","とにかく全データを載せる","数字だけを並べる","グラフを使わない"], a:0, ex:"『だから何をすべきか』まで示すのが価値あるレポートです。"},
+  {ch:"7.レポート", q:"ダッシュボードの目的は？", o:["重要指標を一覧で継続的にモニタリングする","一度だけ集計して捨てる","広告を配信する","フォームを作る"], a:0, ex:"重要KPIを一覧化し、変化を継続的に監視するための仕組みです。"}
+];
 
-function getKnown(){ try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]} }
-function setKnown(a){ localStorage.setItem(KEY, JSON.stringify(a)); }
-function deck(){ return curCat==="全部" ? TERMS : TERMS.filter(t=>t.c===curCat); }
+/* ============ 共通・状態 ============ */
+const CATS = ["全部","指標","戦略","集客","広告","行動","成果","GA4"];
+const KEY_KNOWN = "wa_known";
+let curCat="全部", idx=0, flipped=false;
+
+function getKnown(){ try{return JSON.parse(localStorage.getItem(KEY_KNOWN))||[]}catch(e){return[]} }
+function setKnown(a){ localStorage.setItem(KEY_KNOWN, JSON.stringify(a)); }
+function deck(){ return curCat==="全部"?TERMS:TERMS.filter(t=>t.c===curCat); }
+
+function renderChapters(){
+  const c=document.getElementById('chapters'); c.innerHTML='';
+  CHAPTERS.forEach((ch,i)=>{
+    const d=document.createElement('details'); d.className='ch'; if(i===0) d.open=true;
+    d.innerHTML=`<summary><span class="num">${ch.num}</span>${ch.t}</summary><div class="body">${ch.body}</div>`;
+    c.appendChild(d);
+  });
+}
 
 function renderChips(){
-  const c = document.getElementById('chips'); c.innerHTML='';
+  const c=document.getElementById('chips'); c.innerHTML='';
   CATS.forEach(cat=>{
-    const b=document.createElement('button');
-    b.textContent = cat==="全部"?"全部":cat;
+    const b=document.createElement('button'); b.textContent=cat;
     if(cat===curCat) b.className='active';
     b.onclick=()=>{curCat=cat;idx=0;flipped=false;renderChips();renderCard();};
     c.appendChild(b);
   });
 }
-
 function renderCard(){
-  const d = deck();
-  if(d.length===0) return;
-  if(idx>=d.length) idx=0;
-  const t = d[idx];
-  const known = getKnown().includes(t.t);
-  document.getElementById('counter').textContent = `${idx+1} / ${d.length}　（覚えた：${getKnown().length}/${TERMS.length}）`;
-  const f = document.getElementById('flash');
-  f.className = 'flash' + (known?' known':'');
+  const d=deck(); if(d.length===0) return; if(idx>=d.length) idx=0;
+  const t=d[idx]; const known=getKnown().includes(t.t);
+  document.getElementById('counter').textContent=`${idx+1} / ${d.length}　（覚えた：${getKnown().length}/${TERMS.length}）`;
+  const f=document.getElementById('flash'); f.className='flash'+(known?' known':'');
   if(!flipped){
-    f.innerHTML = `<div class="cat">${t.c}</div>${known?'<div class="known-mark">✓</div>':''}
-      <div class="front-term">${t.t}</div><div class="front-hint">タップで意味を見る 👆</div>`;
+    f.innerHTML=`<div class="cat">${t.c}</div>${known?'<div class="known-mark">✓</div>':''}<div class="front-term">${t.t}</div><div class="front-hint">タップで意味を見る 👆</div>`;
   }else{
-    f.innerHTML = `<div class="cat">${t.c}</div>${known?'<div class="known-mark">✓</div>':''}
-      <div class="reading">${t.r}</div><div class="def">${t.d}</div><div class="eng">${t.e}</div>`;
+    f.innerHTML=`<div class="cat">${t.c}</div>${known?'<div class="known-mark">✓</div>':''}<div class="reading">${t.r}</div><div class="def">${t.d}</div><div class="eng">${t.e}</div>`;
   }
-  const kb = document.getElementById('knowbtn');
-  kb.className = 'knowbtn' + (known?' on':'');
-  kb.textContent = known?'✓ 覚えた！（解除）':'覚えた！にする';
+  const kb=document.getElementById('knowbtn'); kb.className='knowbtn'+(known?' on':'');
+  kb.textContent=known?'✓ 覚えた！（解除）':'覚えた！にする';
 }
-
-function flip(){ flipped=!flipped; renderCard(); }
-function next(){ idx=(idx+1)%deck().length; flipped=false; renderCard(); }
-function prev(){ const n=deck().length; idx=(idx-1+n)%n; flipped=false; renderCard(); }
-function toggleKnown(ev){
-  ev.stopPropagation();
-  const t = deck()[idx];
-  let k = getKnown();
-  if(k.includes(t.t)) k=k.filter(x=>x!==t.t); else k.push(t.t);
-  setKnown(k); renderCard();
-}
+function flip(){flipped=!flipped;renderCard();}
+function next(){idx=(idx+1)%deck().length;flipped=false;renderCard();}
+function prev(){const n=deck().length;idx=(idx-1+n)%n;flipped=false;renderCard();}
+function toggleKnown(ev){ev.stopPropagation();const t=deck()[idx];let k=getKnown();if(k.includes(t.t))k=k.filter(x=>x!==t.t);else k.push(t.t);setKnown(k);renderCard();}
 
 function renderForms(){
   const c=document.getElementById('forms'); c.innerHTML='';
-  FORMULAS.forEach(f=>{
-    const el=document.createElement('div'); el.className='frm';
-    el.innerHTML=`<div class="fname">${f.n}</div><div class="fdesc">${f.d}</div>
-      <div class="feq">${f.eq}</div><div class="fex">${f.ex}</div>`;
-    c.appendChild(el);
-  });
+  FORMULAS.forEach(f=>{const el=document.createElement('div');el.className='frm';
+    el.innerHTML=`<div class="fname">${f.n}</div><div class="fdesc">${f.d}</div><div class="feq">${f.eq}</div><div class="fex">${f.ex}</div>`;
+    c.appendChild(el);});
 }
 
-function switchTab(which){
-  document.getElementById('tabCards').classList.toggle('active', which==='cards');
-  document.getElementById('tabForms').classList.toggle('active', which==='forms');
-  document.getElementById('viewCards').classList.toggle('show', which==='cards');
-  document.getElementById('viewForms').classList.toggle('show', which==='forms');
+/* 問題集 */
+const QCATS=["全部","1.基本指標","2.戦略","3.GA4","4.集客","5.行動","6.成果","7.レポート"];
+let qCat="全部", qList=[], qPos=0, qScore=0, qAnswered=false;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function startQuiz(){
+  const base = qCat==="全部"?QUIZ:QUIZ.filter(q=>q.ch===qCat);
+  qList=shuffle(base); qPos=0; qScore=0; qAnswered=false; renderQuiz();
+}
+function renderQchips(){
+  const c=document.getElementById('qchips'); c.innerHTML='';
+  QCATS.forEach(cat=>{const b=document.createElement('button');b.textContent=cat==="全部"?"全部":cat.replace(/^\d\./,'');
+    if(cat===qCat)b.className='active';
+    b.onclick=()=>{qCat=cat;startQuiz();};c.appendChild(b);});
+}
+function renderQuiz(){
+  const area=document.getElementById('quizArea');
+  if(qPos>=qList.length){
+    const pct=qList.length?Math.round(qScore/qList.length*100):0;
+    let msg = pct>=80?"合格ラインに届く正答率！🎉":pct>=60?"あと一歩！復習しよう 💪":"くり返して定着させよう 🌱";
+    area.innerHTML=`<div class="qbox result"><div>結果</div><div class="big">${qScore} / ${qList.length}</div><div>正答率 ${pct}%　${msg}</div><button class="qnext show" onclick="startQuiz()">もう一度（シャッフル）</button></div>`;
+    return;
+  }
+  const q=qList[qPos]; qAnswered=false;
+  let opts=q.o.map((o,i)=>`<button class="opt" onclick="answer(${i})">${o}</button>`).join('');
+  area.innerHTML=`<div class="qbox">
+    <div class="qmeta"><span>第${qPos+1}問 / ${qList.length}</span><span>正解 ${qScore}</span></div>
+    <span class="qtag">${q.ch}</span>
+    <div class="qtext">${q.q}</div>
+    <div id="opts">${opts}</div>
+    <div class="exp" id="exp"></div>
+    <button class="qnext" id="qnext" onclick="qNext()">次の問題 →</button>
+  </div>`;
+}
+function answer(i){
+  if(qAnswered) return; qAnswered=true;
+  const q=qList[qPos];
+  const btns=document.querySelectorAll('#opts .opt');
+  btns.forEach((b,bi)=>{b.disabled=true; if(bi===q.a)b.classList.add('correct'); if(bi===i&&i!==q.a)b.classList.add('wrong');});
+  if(i===q.a) qScore++;
+  const exp=document.getElementById('exp');
+  exp.innerHTML=(i===q.a?"⭕ 正解！ ":"❌ 不正解 ")+`<b>${q.o[q.a]}</b><br>${q.ex}`;
+  exp.classList.add('show');
+  document.querySelector('.qmeta').lastElementChild.textContent='正解 '+qScore;
+  document.getElementById('qnext').classList.add('show');
+}
+function qNext(){qPos++;renderQuiz();}
+
+function switchTab(w){
+  ['ch','cards','forms','quiz'].forEach(k=>{
+    document.getElementById('tab_'+k).classList.toggle('active', k===w);
+    document.getElementById('view_'+k).classList.toggle('show', k===w);
+  });
+  if(w==='quiz'&&qList.length===0) startQuiz();
   window.scrollTo(0,0);
 }
 
-renderChips(); renderCard(); renderForms();
+renderChapters(); renderChips(); renderCard(); renderForms(); renderQchips();
 </script>
 </body>
 </html>
