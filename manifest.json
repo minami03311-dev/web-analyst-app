@@ -1,0 +1,12 @@
+{
+  "name": "ウェブ解析士 学習カード",
+  "short_name": "解析士カード",
+  "description": "ウェブ解析士（初級）の用語暗記カード＆重要公式集",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#eefaf5",
+  "theme_color": "#cdeee3",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
